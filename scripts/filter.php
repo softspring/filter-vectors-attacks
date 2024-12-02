@@ -8,11 +8,11 @@ function doExit(): void
 }
 
 // filter wordpress request
-str_starts_with($_SERVER['REQUEST_URI'], '/wp-') && doExit();
+isset($_SERVER['REQUEST_URI']) && str_starts_with($_SERVER['REQUEST_URI'], '/wp-') && doExit();
 
 // filter php file request
-str_contains($_SERVER['REQUEST_URI'], '.php') && doExit();
+isset($_SERVER['REQUEST_URI']) && str_contains($_SERVER['REQUEST_URI'], '.php') && doExit();
 
 // filter SF env var injection
-str_contains($_SERVER['REQUEST_URI'], '+--env=') && doExit();
+isset($_SERVER['REQUEST_URI']) && str_contains($_SERVER['REQUEST_URI'], '+--env=') && doExit();
 
